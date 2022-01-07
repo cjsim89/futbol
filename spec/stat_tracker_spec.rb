@@ -2,7 +2,7 @@ require './lib/stat_tracker'
 
 RSpec.describe StatTracker do
   before :each do
-    game_path = './data/games.csv'
+    game_path = './data/test_games.csv'
     team_path = './data/teams.csv'
     game_teams_path = './data/game_teams.csv'
 
@@ -22,9 +22,18 @@ RSpec.describe StatTracker do
 
   describe GameStatistics do
     it "can get highest total score" do
-      expect(@stat_tracker.highest_total_score).to be(Integer)
-      expect(@stat_tracker.highest_total_score).to eq(0)
+      expect(@stat_tracker.highest_total_score).to eq(5)
     end
+    it "can get lowest total score" do
+      expect(@stat_tracker.lowest_total_score).to eq(1)
+    end
+    it "can get percentage_home_wins" do
+      expect(@stat_tracker.percentage_home_wins).to eq(0.69)
+    end
+    it "can get percentage_visitor_wins" do
+      expect(@stat_tracker.percentage_visitor_wins).to eq(0.31)
+    end
+
   end
 
 
