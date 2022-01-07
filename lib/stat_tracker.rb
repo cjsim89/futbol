@@ -27,4 +27,16 @@ class StatTracker
     @game_statistics.percentage_visitor_wins
   end
 
+  def percentage_ties
+    @game_statistics.percentage_ties
+  end
+
+  def count_of_games_by_season
+    @game_statistics.count_of_games_by_season
+  end
+
+  def average_goals_per_game
+    @game_statistics.average_goals_per_game
+  end
+
 end
