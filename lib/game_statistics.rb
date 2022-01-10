@@ -72,8 +72,35 @@ class GameStatistics
     @games.each do |game|
       per_game << (game.away_goals + game.home_goals)
     end
-    #binding.pry
     average_per_game = (per_game.sum.to_f / @games.length.to_f).round(2)
+  end
+
+# Hash
+# {"season" => avg.float }
+  def average_goals_by_season
+    # get unique seasons in data
+    unique_seasons = get_seasons
+    return_object = Hash.new
+    unique_seasons.each do |season|
+      return_object[season] = get_average_goals_data(season)
+    end
+    return_object
+  end
+
+  def get_seasons
+    @games.uniq { |game| [game.season] }.map { |game | game.season }
+  end
+
+  def get_average_goals_data(season)
+    num_season_games = get_num_games_in_season(season)
+    goals_per_game = []
+    @games.each do |game|
+      if (game.season == season)
+        goals_per_game << (game.away_goals + game.home_goals)
+      end
+    end
+    
+    average = (goals_per_game.sum.to_f / num_season_games.to_f).round(2)
   end
 
 end
